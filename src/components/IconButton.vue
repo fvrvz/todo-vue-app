@@ -1,28 +1,41 @@
 <script lang="ts" setup>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-const { icon, onClick, size, color } = defineProps<{
+type IconSize =
+  | '2xs'
+  | 'xs'
+  | 'sm'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '1x'
+  | '2x'
+  | '3x'
+  | '4x'
+  | '5x'
+  | '6x'
+  | '7x'
+  | '8x'
+  | '9x'
+  | '10x'
+
+type IconButtonBase = {
   icon: object
-  onClick: () => void
-  size?:
-    | '2xs'
-    | 'xs'
-    | 'sm'
-    | 'lg'
-    | 'xl'
-    | '2xl'
-    | '1x'
-    | '2x'
-    | '3x'
-    | '4x'
-    | '5x'
-    | '6x'
-    | '7x'
-    | '8x'
-    | '9x'
-    | '10x'
+  size?: IconSize
   color?: string
-}>()
+}
+
+type IconButtonProps =
+  | (IconButtonBase & {
+      type?: undefined
+      onClick: () => void
+    })
+  | (IconButtonBase & {
+      type: string
+      onClick?: () => void
+    })
+
+const { icon, onClick, size, color } = defineProps<IconButtonProps>()
 </script>
 
 <template>
