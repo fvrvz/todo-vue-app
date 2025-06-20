@@ -1,18 +1,12 @@
 <script lang="ts" setup>
-import TodoItem, { type ToggleEmitFn } from './TodoItem.vue'
-import { type Todo } from '@/types/todo.type'
+import { useTodoStore } from '@/stores/todo.store'
+import TodoItem from './TodoItem.vue'
 
-const { todos } = defineProps<{ todos: Todo[] }>()
-
-const emit = defineEmits<ToggleEmitFn>()
-
-function onToggle(id: string) {
-  emit('toggle-completed', id)
-}
+const store = useTodoStore()
 </script>
 
 <template>
-  <div>
-    <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" @toggle-completed="onToggle" />
+  <div class="container">
+    <TodoItem v-for="todo in store.todos" :key="todo.id" :todo="todo" />
   </div>
 </template>
