@@ -1,20 +1,28 @@
 <script lang="ts" setup>
+import { useTodoStore } from '@/stores/todo.store'
 import type { Todo } from '@/types/todo.type'
-
-export type ToggleEmitFn = (event: 'toggle-completed', id: string) => void
-
-const emit = defineEmits<ToggleEmitFn>()
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import IconButton from './IconButton.vue'
 
 const { todo } = defineProps<{ todo: Todo }>()
-
-function onChange() {
-  emit('toggle-completed', todo.id)
+const store = useTodoStore()
+function onRemove() {
+  store.removeTodo(todo.id)
 }
 </script>
 
 <template>
-  <article>
-    <input type="checkbox" :checked="todo.isCompleted" @change="onChange" />
+  <article class="todo-container">
+    <input type="checkbox" :checked="todo.isCompleted" @change="store.toggleTodo(todo.id)" />
     <p>{{ todo.title }}</p>
+    <IconButton :icon="faXmark" :onClick="onRemove" color="red" />
   </article>
 </template>
+
+<style scoped>
+.todo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+</style>

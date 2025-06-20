@@ -1,14 +1,19 @@
 <script lang="ts" setup>
+import { useTodoStore } from '@/stores/todo.store'
 import type { Todo } from '@/types/todo.type'
 import { ref } from 'vue'
 
-export type AddEmitFn = (event: 'add', payload: Todo) => void
-
 const inputText = ref<string>('')
-const emit = defineEmits<AddEmitFn>()
+
+const store = useTodoStore()
 
 function onSubmit() {
-  emit('add', { id: Date.now().toString(), isCompleted: false, title: inputText.value })
+  const payload: Todo = {
+    id: Date.now().toString(),
+    isCompleted: false,
+    title: inputText.value,
+  }
+  store.addTodo(payload)
   inputText.value = ''
 }
 </script>
