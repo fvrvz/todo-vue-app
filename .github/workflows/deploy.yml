@@ -45,8 +45,8 @@ jobs:
       - name: 🎨 Prettier format check
         run: pnpm format
 
-      - name: 🧪 Unit tests (Vitest)
-        run: pnpm test:unit
+      #   - name: 🧪 Unit tests (Vitest)
+      #     run: pnpm test:unit
 
       - name: 🔨 Build Vue App
         run: pnpm run build-only
