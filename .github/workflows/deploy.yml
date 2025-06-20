@@ -49,7 +49,7 @@ jobs:
       #     run: pnpm test:unit
 
       - name: 🔨 Build Vue App
-        run: pnpm run build-only
+        run: pnpm exec vite build --base=/todo-vue-app/
 
       - name: 📦 Upload artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v3
