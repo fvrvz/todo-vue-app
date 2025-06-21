@@ -4,7 +4,7 @@ import { inject } from 'vue'
 let config: Record<string, unknown>
 
 export async function loadConfig(): Promise<void> {
-  const res = await fetch('/config.json')
+  const res = await fetch(`${import.meta.env.BASE_URL}config.json`)
   config = await res.json()
 }
 
