@@ -6,7 +6,8 @@ const store = useTodoStore()
 </script>
 
 <template>
-  <div class="container">
+  <article class="overflow-auto" style="margin: unset">
+    <p v-if="!store.todos.length">No Data available</p>
     <TodoItem v-for="todo in store.todos" :key="todo.id" :todo="todo" />
-  </div>
+  </article>
 </template>

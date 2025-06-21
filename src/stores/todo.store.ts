@@ -11,7 +11,6 @@ export const useTodoStore = defineStore('todos', () => {
 
   function removeTodo(id: string) {
     todos.value = todos.value.filter((todo) => todo.id !== id)
-    console.log({ id, todos: todos.value })
   }
 
   function toggleTodo(id: string) {

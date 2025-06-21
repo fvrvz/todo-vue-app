@@ -2,7 +2,7 @@
 import { useTodoStore } from '@/stores/todo.store'
 import type { Todo } from '@/types/todo.type'
 import { faXmark, faPen, faFloppyDisk, faTrash } from '@fortawesome/free-solid-svg-icons'
-import IconButton from './IconButton.vue'
+import IconButton from './common/IconButton.vue'
 import { ref } from 'vue'
 
 const { todo } = defineProps<{ todo: Todo }>()
@@ -36,16 +36,26 @@ function toggleEdit() {
     <input type="checkbox" :checked="todo.isCompleted" @change="store.toggleTodo(todo.id)" />
     <form v-if="isEditMode" @submit.prevent="onSave" class="todo-container" style="flex: 1">
       <input type="text" v-model="todoTitle" style="margin-bottom: unset" />
-      <IconButton type="submit" :icon="faFloppyDisk" color="blue" />
+      <IconButton
+        type="submit"
+        :icon="faFloppyDisk"
+        color="var(--pico-color-cyan-500)"
+        tooltip="Save"
+      />
     </form>
     <p style="margin-bottom: unset; flex: 1" v-else>{{ todo.title }}</p>
     <div class="todo-container" style="margin-left: 1rem">
       <IconButton
         :icon="isEditMode ? faXmark : faPen"
         :onClick="toggleEdit"
-        :color="isEditMode ? 'brown' : 'blue'"
+        :color="isEditMode ? 'var(--pico-color-red-450)' : 'var(--pico-color-azure-500)'"
       />
-      <IconButton :icon="faTrash" :onClick="onRemove" color="red" />
+      <IconButton
+        :icon="faTrash"
+        :onClick="onRemove"
+        color="var(--pico-color-red-500)"
+        tooltip="Delete"
+      />
     </div>
   </article>
 </template>
