@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useField } from '@/composables/useField'
 import { useTodoStore } from '@/stores/todo.store'
-import type { Todo } from '@/types/todo.type'
 
 const { value: inputText, isInvalid } = useField('')
 
@@ -12,12 +11,7 @@ function onSubmit() {
     return
   }
 
-  const payload: Todo = {
-    id: Date.now().toString(),
-    isCompleted: false,
-    title: inputText.value.trim(),
-  }
-  store.addTodo(payload)
+  store.addTodo(inputText.value.trim())
   inputText.value = ''
 }
 </script>
