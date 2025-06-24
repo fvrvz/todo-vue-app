@@ -12,7 +12,7 @@ const layoutStore = useLayoutStore()
   <div class="main-body">
     <HeaderComponent title="Todo App" />
     <main class="layout-container" :class="{ 'sidebar-active': layoutStore.isSidebarActive }">
-      <div class="main-content">
+      <div class="container-fluid main-content">
         <InputBox />
         <TodoItemsContainer />
       </div>
@@ -40,7 +40,6 @@ const layoutStore = useLayoutStore()
   flex-grow: 1;
   transition: width 0.3s ease;
   width: 100%;
-  padding: 2rem 4rem;
 
   display: grid;
   grid-template-rows: auto 1fr;
